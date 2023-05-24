@@ -82,6 +82,7 @@
   transition-duration: 0.2s;
   font-size: 1.5rem;
   line-height: 2rem;
+  transition-duration: 0.2s;
 }
 
 .list-item i {
@@ -93,4 +94,12 @@
 
 .list-item:hover i {
   visibility: visible;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.text-gray-400 {
+  color: rgb(156, 163, 175);
 }
