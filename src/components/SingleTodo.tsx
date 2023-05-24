@@ -5,12 +5,13 @@ import "../styles/styles.css";
 interface Props {
   todo: Todo;
   index: number;
-  setTodos(todo: string): void;
+  todos: Todo[];
+  setTodos(todos: Todo[]): void;
 }
 
 export default class SingleTodo extends Component<Props> {
   handleDelete(id: number): void {
-    console.log(id);
+    this.props.setTodos(this.props.todos.filter((todo) => todo.id !== id));
   }
 
   render() {

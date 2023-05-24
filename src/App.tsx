@@ -19,16 +19,19 @@ export default class App extends Component {
     this.setState({ todo: e.target.value });
   }
 
-  setTodos(todo: string): void {
+  setTodos(todos: Todo[]): void {
     this.setState({
-      todos: [...this.state.todos, { id: Date.now(), todo, isDone: false }],
+      todos,
     });
   }
 
   handleAdd(e: React.FormEvent): void {
     e.preventDefault();
     if (this.state.todo) {
-      this.setTodos(this.state.todo);
+      this.setTodos([
+        ...this.state.todos,
+        { id: Date.now(), todo: this.state.todo, isDone: false },
+      ]);
       this.setState({ todo: "" });
     }
   }

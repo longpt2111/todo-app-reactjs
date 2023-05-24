@@ -5,7 +5,7 @@ import SingleTodo from "./SingleTodo";
 
 interface Props {
   todos: Todo[];
-  setTodos(todo: string): void;
+  setTodos(todos: Todo[]): void;
 }
 
 export default class TodoList extends Component<Props> {
@@ -28,6 +28,7 @@ export default class TodoList extends Component<Props> {
               todo={todo}
               key={todo.id}
               index={index + 1}
+              todos={todos}
               setTodos={setTodos}
             />
           ))}
