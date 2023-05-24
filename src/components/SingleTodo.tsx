@@ -29,7 +29,10 @@ export default class SingleTodo extends Component<Props, State> {
     return (
       <div
         className="list-item"
-        onClick={() => this.setState({ isDone: !isDone })}
+        onClick={() => {
+          this.setState({ isDone: !isDone });
+          todo.isDone = !isDone;
+        }}
       >
         {isDone ? (
           <p className="list-item__content line-through text-gray-400">
