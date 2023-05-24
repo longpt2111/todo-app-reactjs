@@ -7,7 +7,7 @@ interface Props {
   index: number;
   todos: Todo[];
   setTodos(todos: Todo[]): void;
-  forceRenderTodoList(): void;
+  forceUpdateTodoList(): void;
 }
 
 interface State {
@@ -24,7 +24,7 @@ export default class SingleTodo extends Component<Props, State> {
   }
 
   render() {
-    const { todo, index, forceRenderTodoList } = this.props;
+    const { todo, index, forceUpdateTodoList } = this.props;
     const { isDone } = this.state;
 
     return (
@@ -32,7 +32,7 @@ export default class SingleTodo extends Component<Props, State> {
         className="list-item"
         onClick={() => {
           this.setState({ isDone: !isDone });
-          forceRenderTodoList();
+          forceUpdateTodoList();
           todo.isDone = !isDone;
         }}
       >

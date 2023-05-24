@@ -17,7 +17,7 @@ export default class TodoList extends Component<Props, State> {
     filter: "all",
   };
 
-  forceRenderTodoList(): void {
+  forceUpdateTodoList(): void {
     this.forceUpdate();
   }
 
@@ -48,7 +48,7 @@ export default class TodoList extends Component<Props, State> {
                   index={index + 1}
                   todos={todos}
                   setTodos={setTodos}
-                  forceRenderTodoList={this.forceRenderTodoList.bind(this)}
+                  forceUpdateTodoList={this.forceUpdateTodoList.bind(this)}
                 />
               ))
             : filter === "todo"
@@ -61,7 +61,7 @@ export default class TodoList extends Component<Props, State> {
                     index={index + 1}
                     todos={todos}
                     setTodos={setTodos}
-                    forceRenderTodoList={this.forceRenderTodoList.bind(this)}
+                    forceUpdateTodoList={this.forceUpdateTodoList.bind(this)}
                   />
                 ))
             : todos
@@ -73,7 +73,7 @@ export default class TodoList extends Component<Props, State> {
                     index={index + 1}
                     todos={todos}
                     setTodos={setTodos}
-                    forceRenderTodoList={this.forceRenderTodoList.bind(this)}
+                    forceUpdateTodoList={this.forceUpdateTodoList.bind(this)}
                   />
                 ))}
         </div>
