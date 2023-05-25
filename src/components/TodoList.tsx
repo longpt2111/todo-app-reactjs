@@ -21,10 +21,32 @@ export default class TodoList extends Component<Props, State> {
     this.forceUpdate();
   }
 
-  render() {
+  renderTodos() {
     const { todos, setTodos } = this.props;
     const { filter } = this.state;
 
+    let filteredTodos: Todo[];
+    if (filter === "all") {
+      filteredTodos = todos;
+    } else if (filter === "todo") {
+      filteredTodos = todos.filter((todo) => !todo.isDone);
+    } else {
+      filteredTodos = todos.filter((todo) => todo.isDone);
+    }
+
+    return filteredTodos.map((todo, index) => (
+      <SingleTodo
+        todo={todo}
+        key={todo.id}
+        index={index + 1}
+        todos={todos}
+        setTodos={setTodos}
+        forceUpdateTodoList={this.forceUpdateTodoList.bind(this)}
+      />
+    ));
+  }
+
+  render() {
     return (
       <div className="list">
         <div className="list-heading">
@@ -39,44 +61,7 @@ export default class TodoList extends Component<Props, State> {
             <option value="done">Done</option>
           </select>
         </div>
-        <div className="list-container">
-          {filter === "all"
-            ? todos.map((todo, index) => (
-                <SingleTodo
-                  todo={todo}
-                  key={todo.id}
-                  index={index + 1}
-                  todos={todos}
-                  setTodos={setTodos}
-                  forceUpdateTodoList={this.forceUpdateTodoList.bind(this)}
-                />
-              ))
-            : filter === "todo"
-            ? todos
-                .filter((todo) => !todo.isDone)
-                .map((todo, index) => (
-                  <SingleTodo
-                    todo={todo}
-                    key={todo.id}
-                    index={index + 1}
-                    todos={todos}
-                    setTodos={setTodos}
-                    forceUpdateTodoList={this.forceUpdateTodoList.bind(this)}
-                  />
-                ))
-            : todos
-                .filter((todo) => todo.isDone)
-                .map((todo, index) => (
-                  <SingleTodo
-                    todo={todo}
-                    key={todo.id}
-                    index={index + 1}
-                    todos={todos}
-                    setTodos={setTodos}
-                    forceUpdateTodoList={this.forceUpdateTodoList.bind(this)}
-                  />
-                ))}
-        </div>
+        <div className="list-container">{this.renderTodos()}</div>
       </div>
     );
   }
