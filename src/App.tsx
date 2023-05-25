@@ -27,13 +27,14 @@ export default class App extends Component {
 
   handleAdd(e: React.FormEvent): void {
     e.preventDefault();
-    if (this.state.todo) {
+    if (this.state.todo.trim()) {
       this.setTodos([
         ...this.state.todos,
         { id: Date.now(), todo: this.state.todo, isDone: false },
       ]);
       this.setState({ todo: "" });
     }
+    this.setState({ todo: "" });
   }
 
   render() {
