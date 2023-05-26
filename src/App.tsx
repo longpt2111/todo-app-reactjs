@@ -12,7 +12,7 @@ interface State {
 export default class App extends Component {
   state: State = {
     todo: "",
-    todos: [],
+    todos: JSON.parse(localStorage.getItem("todos") as string) || [],
   };
 
   setTodo(e: React.ChangeEvent<HTMLInputElement>): void {
@@ -23,6 +23,7 @@ export default class App extends Component {
     this.setState({
       todos,
     });
+    localStorage.setItem("todos", JSON.stringify(todos));
   }
 
   handleAdd(e: React.FormEvent): void {

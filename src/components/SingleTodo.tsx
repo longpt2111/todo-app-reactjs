@@ -23,6 +23,10 @@ export default class SingleTodo extends Component<Props, State> {
     this.props.setTodos(this.props.todos.filter((todo) => todo.id !== id));
   }
 
+  componentDidUpdate(): void {
+    localStorage.setItem("todos", JSON.stringify(this.props.todos));
+  }
+
   render() {
     const { todo, index, forceUpdateTodoList } = this.props;
     const { isDone } = this.state;
